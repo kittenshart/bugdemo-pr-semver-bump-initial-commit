@@ -1,0 +1,17 @@
+name: bump
+on:
+  push:
+    branches: main
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bump version
+        uses: jefflinse/pr-semver-bump@v1.3.3
+        with:
+          mode: bump
+          repo-token: ${{secrets.GITHUB_TOKEN}}
+          release-notes-prefix: '^### Release Notes'
+          release-notes-suffix: '^#{1,3}[^#]'
+          require-release-notes: true
+          with-v: true
